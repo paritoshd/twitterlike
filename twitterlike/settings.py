@@ -24,7 +24,7 @@ DIRNAME = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = 'ohgu0uo%mw-d)0obxyquq3j7br4l_t))j9r@#ewdi(n1*w9ppm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
