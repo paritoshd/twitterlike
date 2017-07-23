@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+	<div class="main-container">
+		<div class="top-bar">
+			<div class="navigation">
+				<div class="nav-container">
+					<div class="twitterlikeicon"></div>
+					<div class="home">
+						<a class="home-anchor" href="/">Home</a>
+					</div>
+					<div class="nav-rightcontainer">
+						<div class="profile">
+							<img class="profile-image" src="../static/images/paritoshprofile.jpg" />
+							<span class="profile-name">{{loggedInUserName}}</span>
+						</div>
+						{% if currentUser == loggedInUser %}
+						<div class="compose-tweet">
+							<button class="tweet-button tweet-button-default" id="default_tweet_button">
+								<span>Tweet</span>
+							</button>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page">
+			<div class="page-container">
+				<div class="page-profile-background">
+					<div class="page-inner-div">
+						<div class="page-header">
+							<div class="page-background">
+								<img id="profile_background_img" src="" class="profile-background-img" />
+							</div>
+							<div class="page-profile-avatar">
+								<div class="profile-avatar-container">
+									<div class="profile-avatar-div">
+										<img id="profile_avatar_img" src="" class="profile-avatar-img" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="status-nav-bar">
+							<div class="status-bar">
+								<div class="status-bar-container">
+									<div class="status-bar-div">
+										<div class="statuses">
+											<ul class="statuses-ul">
+												<li class="statuses-li">
+													<span class="num_tweets_text">Tweets</span>
+													<span class="num_tweets" id="user_num_tweets">0</span>
+												</li>
+												<li class="statuses-li">
+													<span class="num_following_text">Following</span>
+													<span class="num_following" id="user_num_following">0</span>
+												</li>
+												<li class="statuses-li">
+													<span class="num_followers_text">Followers</span>
+													<span class="num_followers"id="user_num_followers">0</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main-body">
+					<div class="main-body-container">
+						<div class="main-body-div">
+							<div class="body-left-container">
+								<div class="body-left-div">
+									<div class="profile-side-container">
+										<div class="profile-side-div">
+											<h1 class="profile-side-name" id="profile_side_name"></h1>
+											<h2 class="profile-side-aliasname" id="profile_side_aliasname"></h2>
+											<p class="profile-side-description" id="profile_side_description"></p>
+											<div class="profile-side-location" id="profile_side_location"></div>
+											<div class="profile-side-join-date" id="profile_side_join_date"></div>
+										</div>
+										{% if currentUser != loggedInUser %}
+										<button class="tweet-button tweet-button-otherusers" id="tweet_button_otherusers">
+											<span>Tweet to {{currentUser}}</span>
+										</button>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+							<div class="body-right-container">
+								<div class="body-right-div">
+									<div class="body-timeline-panel">
+										<div class="body-timeline-heading">
+											<div class="body-timeline-heading-spacer"></div>
+											<div class="body-timeline-heading-content">
+												<h2 class="timeline-heading">Tweets</h2>
+											</div>
+										</div>
+										<div class="body-timeline-container">
+											<div class="body-timeline-div">
+												<ol class="timelines" id="timelines_ol">
+												</ol>
+											</div>
+										</div>
+									</div>
+									<div class="body-followers-panel">
+										<div class="body-followers-container">
+											<div class="body-followers-div" id="body_followers_div">
+												<div class="body-followers-text">
+													<h3 class="followers">Recommended Followers</h3>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var twitterData = {{data|safe}};
+		var currentUser = "{{currentUser}}";
+		var loggedInUser = "{{loggedInUser}}";
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/twitter.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/utils.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
